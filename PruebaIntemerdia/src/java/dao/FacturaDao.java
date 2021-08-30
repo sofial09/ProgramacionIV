@@ -65,16 +65,10 @@ public class FacturaDao {
                 lista.add(fc);
             }
 
-            if (lista.size() > 0) {
-                System.out.println("Lista llena");
-            }
-            conexion.desconectar();
-            return lista;            
+            return lista;
         } catch (Exception e) {
-            System.out.println("ERROR : " + e);
             return null;
-        }  
-
+        }
     }
 
 }

@@ -6,7 +6,6 @@ public class Testing {
         Conexion conn = new Conexion();
 
         conn.conectar();
-        conn.desconectar();
 
     }
 }

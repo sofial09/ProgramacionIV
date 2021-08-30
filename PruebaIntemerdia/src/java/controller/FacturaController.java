@@ -19,11 +19,11 @@ public class FacturaController {
         //Solicitamos los datos a insertar
         System.out.println("\tDatos para generar la factura");
         System.out.println("\t-------------------------------");
-        System.out.println("\tIngrese el nombre del cliente: ");
+        System.out.println("Ingrese el nombre del cliente: ");
         fac.setNombre(teclado.next());
-        System.out.println("\tIngrese el numero de factura: ");
-        fac.setNombre(teclado.next());
-        System.out.println("\tIngrese la fecha de vencimiento YYYY-MM-DD: ");
+        System.out.println("Ingrese el numero de factura: ");
+        fac.setNumf(teclado.nextInt());
+        System.out.println("Ingrese la fecha de vencimiento YYYY-MM-DD: ");
         String date1 = teclado.next();
         Date datef = new SimpleDateFormat("yyyy-MM-dd").parse(date1);
         fac.setFecha_vencimiento(datef);
@@ -35,16 +35,18 @@ public class FacturaController {
         try {
             testDate = df.parse(date);
         } catch (Exception e) {
-            System.out.println("\tFormato no válido");
+            System.out.println("Formato no válido");
         }
         if (!df.format(testDate).equals(date)) {
-            System.out.println("\tFecha inválida!");
+            System.out.println("Fecha inválida!");
         }
         //Fin validacion formato de fecha
-        System.out.println("\tIngrese el modelo del auto: ");
+        System.out.println("Ingrese la marca del auto: ");
         fac.setMarca(teclado.next());
-        System.out.println("\tIngrese la marca del auto: ");
+        System.out.println("Ingrese el modelo del auto: ");
         fac.setModelo(teclado.next());
+        System.out.println("Descripcion del arreglo al auto: ");
+        fac.setDescripcion(teclado.next());
         //Hacemos la inserción en la BD
         boolean respuesta = fd.insertar(fac);
         //Válidamos si se hizo la insercción de los datos
@@ -65,7 +67,6 @@ public class FacturaController {
             System.out.println("Descripcion del arreglo al auto: " + fac1.getDescripcion());
             System.out.println("--------------------------------\n");
         }
-        System.out.println("La lista es: " + fd.selectAll());
 
     }
 
