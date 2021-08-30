@@ -5,44 +5,35 @@ import java.sql.DriverManager;
 
 public class Conexion {
 
-    private static String bd = "PIntermedia";
-    private static String user = "root";
-    private static String pass = "";
-    private static String url = "jdbc:mysql://localhost:3306/" + bd;
+    static String bd = "PIntermedia";
+    static String user = "root";
+    static String pass = "";
+    static String url = "jdbc:mysql://localhost:3306/" + bd;
 
-    Connection conn;
+    Connection conn = null;
 
-    public Connection getConn() {
-        return conn;
-    }
-
-    public void setConn(Connection conn) {
-        this.conn = conn;
-    }
-
-    public void Conectar() throws Exception {
+    public Conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection(url, user, pass);
-            if (this.conn != null) {
-                System.out.println("Conexión exitosa");
-            } else {
-                System.out.println("Error al conectar");
+            conn = DriverManager.getConnection(url, user, pass);
+            if (conn != null) {
+                System.out.println("Exito en la conexion");
             }
-        } catch (Exception ex) {
-            throw ex;
+        } catch (Exception e) {
+            System.out.println("Error en la Conexion " + e);
         }
     }
 
-    public void Desconectar() throws Exception {
+    public Connection conectar() {
+        return conn;
+    }
+
+    public void desconectar() {
+        System.out.println("Desconectado");
         try {
-            if (this.conn != null) {
-                if (this.conn.isClosed() != true) {
-                    this.conn.close();
-                }
-            }
-        } catch (Exception ex) {
-            throw ex;
+            conn.close();
+        } catch (Exception e) {
+            System.out.println("ERROR AL CERRAR LA CONEXION : " + e);
         }
     }
 }
