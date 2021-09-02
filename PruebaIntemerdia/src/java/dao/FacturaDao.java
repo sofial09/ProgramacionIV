@@ -21,7 +21,7 @@ public class FacturaDao {
         Conexion conexion = new Conexion();
         String sql = "INSERT INTO factura(id_factura,nombre,numf,fecha_vencimiento,marca,modelo,descripcion) "
                 + "VALUES (?,?,?,?,?,?,?);";
-        //insert into factura values ("1","Andres", "23500", "2011-02-21", "Hyundai", "Accent", "Bujías sin punta");
+       
         try {
             fac.setDescripcion("...");
             PreparedStatement ps = conexion.conectar().prepareStatement(sql);
@@ -73,75 +73,3 @@ public class FacturaDao {
 
 }
 
-/* public boolean actualizar(Factura fac) {
-        boolean flag = false;
-        String sql = "UPDATE `factura` SET `nombre` = ?, `numf` = ?, `fecha_vencimiento` = ?, `marca` = ?, `modelo` = ?, `descripcion` = ? WHERE (`id_factura` = ?);";
-        try {
-            Conexion conexion = new Conexion();
-            PreparedStatement ps = conexion.conectar().prepareStatement(sql);
-            ps.setString(1, fac.getNombre());
-            ps.setInt(2, fac.getNumf());
-            ps.setString(3, fac.getFechadeVencimiento());
-            ps.setString(4, fac.getMarca());
-            ps.setString(5, fac.getModelo());
-            ps.setString(6, fac.getDescripcion());
-            ps.setInt(7, fac.getId_factura());
-
-            if (ps.executeUpdate() == 1) {
-                flag = true;
-                System.out.println("Registro actualizado");
-            } else {
-                System.out.println("Error al actualizar");
-            }
-            conexion.desconectar();
-
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
-        }
-        return flag;
-    }
-
-    public boolean eliminar(int id_factura) {
-        boolean flag = false;
-        String sql = "DELETE FROM `factura` WHERE (`id` = ?);";
-        try {
-            Conexion conexion = new Conexion();
-            PreparedStatement ps = conexion.conectar().prepareStatement(sql);
-            ps.setInt(1, id_factura);
-            if (ps.executeUpdate() == 1) {
-                flag = true;
-                System.out.println("Registro eliminado");
-            } else {
-                System.out.println("Error al eliminar");
-            }
-            conexion.desconectar();
-        } catch (Exception e) {
-            System.out.println("Error : " + e);
-        }
-        return flag;
-    }
-
-    public List<Factura> selectById(int id_factura) {
-        String sql = "select * from factura where id_factura = ?";
-        try {
-            PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setInt(1, id_factura);
-            ResultSet rs = ps.executeQuery();
-            Factura fc;
-
-            List<Factura> lista = new LinkedList<>();
-            while (rs.next()) {
-                fc = new Factura(rs.getInt("id"));
-                fc.setNombre(rs.getString("Nombre"));
-                fc.setNumf(rs.getInt("Numero de factura"));
-                fc.setFecha_vencimiento(rs.getDate("Fecha de Vencimiento"));
-                fc.setMarca(rs.getString("Marca"));
-                fc.setModelo(rs.getString("Modelo"));
-                fc.setDescripcion(rs.getString("Descripcion"));
-                lista.add(fc);
-            }
-            return lista;
-        } catch (Exception e) {
-            return null;
-        }
-    }*/
